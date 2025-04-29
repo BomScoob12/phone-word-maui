@@ -30,7 +30,7 @@ public static class PhonewordTranslator
     {
         "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"
     };
-    // This represent the number on the phone 1, 2, 3, 4, 5, 6, 7, 8, 9, 0
+    // This represent the number on the phone 2, 3, 4, 5, 6, 7, 8, 9, 0
 
     private static int? TranslateToNumber(char c)
     {
