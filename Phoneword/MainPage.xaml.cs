@@ -1,4 +1,6 @@
-﻿namespace Phoneword
+﻿using System.Threading.Tasks;
+
+namespace Phoneword
 {
     public partial class MainPage : ContentPage
     {
@@ -28,9 +30,28 @@
             }
         }
 
-        private void OnCall(object sender, EventArgs e)
+        public async void OnCall(object sender, EventArgs e)
         {
-
+            if (await DisplayAlert(
+                "Dial a number",
+                "Would you like  to call " + translatedNumber,
+                "Yes",
+                "No"))
+            {
+                try
+                {
+                    if (PhoneDialer.Default.IsSupported && !string.IsNullOrWhiteSpace(translatedNumber)) 
+                        PhoneDialer.Open(translatedNumber);
+                }
+                catch (ArgumentException)
+                {
+                    await DisplayAlert("Unable to dial", "Phone number is not valid", "OK");
+                }
+                catch (Exception)
+                {
+                    await DisplayAlert("Unable to dial", "Phone dial failed", "OK");
+                }
+            }
         }
     }
 
